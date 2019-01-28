@@ -24,13 +24,13 @@ Dow_data = import_csv(DOW)
 Ftse_data = import_csv(FTSE)
 
 Ftse = Market('FTSE', Ftse_data)
+Ftse.p.sort(key=lambda x: x.d, reverse=True)    # Sorts into date order
 
-'''
-for i in Ftse.p:
-    print(i.d)
-'''
+''' Stock '''
+vanguard = Stock('Vanguard', 1, 100000)  # Name, price, units
 
-starting_value = 100000
+''' Simulation '''
+vanguard.sim(Ftse, datetime.date(2007, 1, 1), datetime.date(2012, 1, 1))
 
-vanguard = Stock('Vanguard', 1, starting_value)
-
+print(vanguard.v)
+print(vanguard.c)
